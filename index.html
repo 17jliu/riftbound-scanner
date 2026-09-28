@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Riftbound Scanner</title>
+  <meta name="description" content="Scan Riftbound cards with your camera and export them for Piltover Archive.">
+  <meta name="theme-color" content="#14161a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Rift Scan">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Rift Scan</h1>
+    <span class="total" id="total">0 cards</span>
+    <button id="export" class="primary">Export CSV</button>
+  </header>
+
+  <main>
+    <section class="camera" aria-label="Camera">
+      <div class="viewport" id="viewport">
+        <video id="video" playsinline muted></video>
+        <div class="box" id="box"></div>
+        <div class="flash" id="flash"></div>
+        <button id="start" class="start primary">Start camera</button>
+      </div>
+      <div class="status" id="status" role="status">Camera off</div>
+      <div class="controls">
+        <button id="scan" disabled>Scan now</button>
+        <label class="toggle"><input type="checkbox" id="auto" checked> Auto-detect</label>
+        <button id="empty" disabled title="Tell the scanner the box is empty right now">Box is empty</button>
+      </div>
+      <details class="debug">
+        <summary>Detection details</summary>
+        <div id="meters" class="meters"></div>
+        <pre id="ocrText"></pre>
+      </details>
+    </section>
+
+    <section class="last" id="last" hidden aria-label="Last scanned card">
+      <img id="lastImg" alt="">
+      <div class="last-info">
+        <div class="last-name" id="lastName"></div>
+        <label class="field">Printing
+          <select id="lastVariant"></select>
+        </label>
+        <label class="toggle" id="lastFoilWrap"><input type="checkbox" id="lastFoil"> Foil</label>
+        <div class="last-actions">
+          <button id="undo">Undo</button>
+          <span class="muted" id="lastHow"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="manual" aria-label="Add a card by hand">
+      <input id="search" type="search" placeholder="Add by name or number (e.g. OGN-042)" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <ul id="results" class="results"></ul>
+    </section>
+
+    <section class="collection" aria-label="Collection">
+      <div class="collection-head">
+        <h2>Scanned</h2>
+        <button id="clear" class="danger">Clear all</button>
+      </div>
+      <ul id="list" class="list"></ul>
+      <p class="muted" id="emptyList">Nothing yet. Slide a card into the box, or add one by hand.</p>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

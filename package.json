@@ -1,0 +1,15 @@
+{
+  "name": "riftbound-scanner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build-cards": "node scripts/build-cards.mjs",
+    "serve": "npx --yes http-server -p 8080 -c-1 ."
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^1.0.9",
+    "playwright-core": "^1.63.0",
+    "tesseract.js": "^7.0.0"
+  }
+}
